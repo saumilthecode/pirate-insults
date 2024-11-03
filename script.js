@@ -28,11 +28,9 @@ function pirateify(text) {
         .replace(/\bthe\b/g, "th'");
 }
 
-// Initialize API globally
 let genAI;
 let model;
 
-// Fetch API key and initialize
 async function initializeAPI() {
     try {
         const response = await fetch('/api/config');
@@ -74,7 +72,8 @@ async function fetchPirateInsult() {
     }
 }
 
-// Initialize API when page loads
+
 initializeAPI();
 
 insultButton.addEventListener('click', fetchPirateInsult);
+
