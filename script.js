@@ -60,16 +60,4 @@ async function fetchPirateInsult() {
 
     } catch (error) {
         console.error("Error fetching pirate insult:", error);
-        const fallbackInsult = backupInsults[Math.floor(Math.random() * backupInsults.length)];
-        insultDisplay.innerText = pirateify(fallbackInsult);
-
-    } finally {
-        insultButton.disabled = false;
-        insultButton.innerText = "Give Me An Insult!";
-    }
-}
-
-// Initialize API when page loads
-initializeAPI();
-
-insultButton.addEventListener('click', fetchPirateInsult);
+        const fallbackInsult = backupInsults[Math.floor(Mat
