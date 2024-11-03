@@ -4,65 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pirate Insult Generator</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        #insultDisplay { margin-top: 20px; font-size: 1.5em; color: #b22222; }
-        #insultButton { padding: 10px 20px; font-size: 1em; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Pirate Insult Generator</h1>
-    <button id="insultButton">Give Me An Insult!</button>
-    <div id="insultDisplay"></div>
-
-    <script>
-        const insultButton = document.getElementById("insultButton");
-        const insultDisplay = document.getElementById("insultDisplay");
-
-        const backupInsults = [
-            "Ye scurvy dog!",
-            "Avast, ye barnacle-bottomed landlubber!",
-            "Arrr, ye lily-livered swashbuckler!",
-            "Walk the plank, ye blaggard!"
-        ];
-
-        function pirateify(text) {
-            return text
-                .replace(/\byou\b/g, "ye")
-                .replace(/\bare\b/g, "be")
-                .replace(/\byour\b/g, "yer")
-                .replace(/\byou’re\b/g, "ye be")
-                .replace(/\byou’ll\b/g, "ye’ll")
-                .replace(/\byou’ve\b/g, "ye’ve")
-                .replace(/\byou’d\b/g, "ye’d")
-                .replace(/\bof\b/g, "o’")
-                .replace(/\bthe\b/g, "th’");
+    <div class="container">
+        <h1>Arrr! Ye Pirate Insult Generator!</h1>
+        <p>Click the button below to be insulted like a true scallywag!</p>
+        <button id="insultButton">Give Me An Insult!</button>
+        <div id="insultDisplay" class="insult"></div>
+    </div>
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
         }
-
-        async function fetchPirateInsult() {
-            insultButton.disabled = true;
-            insultButton.innerText = "Fetching...";
-
-            try {
-                const response = await fetch("/api/generateInsult");
-                const data = await response.json();
-
-                if (data.insult) {
-                    insultDisplay.innerText = pirateify(data.insult);
-                } else {
-                    throw new Error("No insult received");
-                }
-            } catch (error) {
-                console.error("Error fetching pirate insult:", error);
-                const fallbackInsult = backupInsults[Math.floor(Math.random() * backupInsults.length)];
-                insultDisplay.innerText = pirateify(fallbackInsult);
-            } finally {
-                insultButton.disabled = false;
-                insultButton.innerText = "Give Me An Insult!";
-            }
-        }
-
-        insultButton.addEventListener("click", fetchPirateInsult);
+      }
     </script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
