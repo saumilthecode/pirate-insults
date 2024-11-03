@@ -41,4 +41,7 @@ button:hover {
 
 .insult {
     margin-top: 20px;
-    font-style
+    font-style: italic;
+    font-size: 1.2em;
+    color: #8b0000;
+}
